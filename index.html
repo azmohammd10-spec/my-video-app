@@ -6,7 +6,24 @@
 <title>نجم - About</title>
 
 <style>
-container{
+
+/* إعادة ضبط */
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Tahoma,sans-serif;
+}
+
+/* خلفية الصفحة */
+body{
+background:#0f172a;
+color:#fff;
+line-height:1.9;
+}
+
+/* قسم الفيديو (إن احتجته لاحقًا) */
+.video-container{
 position:fixed;
 top:0;
 left:0;
@@ -20,48 +37,10 @@ background:#000;
 width:100%;
 height:100%;
 object-fit:cover;
-}  
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:Tahoma,sans-serif;
 }
-<div class="video-container">
 
-  <video
-    class="video-player"
-    autoplay
-    muted
-    loop
-    playsinline
-  >
-    <source src="video.mp4" type="video/mp4">
-  </video>
-
-</div> 
-  <div class="feed">
-
-  <section class="video-item">
-    <video autoplay muted loop playsinline>
-      <source src="video1.mp4" type="video/mp4">
-    </video>
-  </section>
-
-  <section class="video-item">
-    <video autoplay muted loop playsinline>
-      <source src="video2.mp4" type="video/mp4">
-    </video>
-  </section>
-
-  <section class="video-item">
-    <video autoplay muted loop playsinline>
-      <source src="video3.mp4" type="video/mp4">
-    </video>
-  </section>
-
-</div>
-  .feed{
+/* feed للفيديوهات */
+.feed{
 height:100vh;
 overflow-y:scroll;
 scroll-snap-type:y mandatory;
@@ -80,13 +59,8 @@ object-fit:cover;
 display:block;
 background:#000;
 }
-body{
-background:#0f172a;
-color:#fff;
-padding:20px;
-line-height:1.9;
-}
 
+/* صفحة التعريف */
 .about-app{
 max-width:900px;
 margin:auto;
@@ -94,6 +68,7 @@ background:#1e293b;
 padding:25px;
 border-radius:20px;
 box-shadow:0 10px 30px rgba(0,0,0,.3);
+margin-top:20px;
 }
 
 h1{
@@ -136,77 +111,44 @@ font-weight:bold;
 }
 
 @media(max-width:600px){
-h1{
-font-size:30px;
+h1{font-size:30px;}
+.about-app{padding:18px;}
 }
-.about-app{
-padding:18px;
-}
-}
-</style>
 
+</style>
 </head>
+
 <body>
 
+<!-- صفحة التعريف فقط -->
 <section class="about-app">
 
 <h1>⭐ نجم</h1>
 
 <p>
-نجم هي منصة حديثة للفيديوهات القصيرة، صُممت لتقديم تجربة مشاهدة سريعة وسلسة تجمع بين البساطة والأداء العالي. تتيح المنصة للمستخدمين اكتشاف المحتوى، مشاركة اللحظات اليومية، والتفاعل مع المبدعين من خلال واجهة عصرية وسهلة الاستخدام.
+نجم هي منصة حديثة للفيديوهات القصيرة، صُممت لتقديم تجربة مشاهدة سريعة وسلسة تجمع بين البساطة والأداء العالي.
 </p>
 
 <h2>نبذة عن المشروع</h2>
-
 <p>
-يهدف تطبيق نجم إلى توفير بيئة رقمية حديثة لصناع المحتوى والمشاهدين، مع التركيز على السرعة، سهولة الاستخدام، واستهلاك أقل للبيانات. تم تصميم المنصة لتعمل بكفاءة على مختلف الأجهزة مع تجربة استخدام مريحة وسلسة.
+يهدف تطبيق نجم إلى توفير بيئة رقمية حديثة لصناع المحتوى والمشاهدين.
 </p>
 
 <h2>الأهداف</h2>
-
 <ul>
 <li>إنشاء منصة فيديوهات قصيرة عصرية وسريعة.</li>
-<li>توفير واجهة مشاهدة تفاعلية وسهلة الاستخدام.</li>
-<li>دعم تسجيل الدخول عبر رقم الهاتف.</li>
-<li>تقديم نظام شارة زرقاء مجاني للمبدعين المؤهلين.</li>
-<li>تمكين المستخدمين من التفاعل مع المحتوى بسهولة.</li>
-<li>بناء منصة قابلة للتوسع والتطوير المستقبلي.</li>
+<li>واجهة مشاهدة سهلة الاستخدام.</li>
+<li>تسجيل دخول برقم الهاتف.</li>
+<li>شارة زرقاء مجانية.</li>
 </ul>
 
-<h2>المميزات الرئيسية</h2>
-
+<h2>التقنيات</h2>
 <ul>
-<li>مشاهدة فيديوهات قصيرة بتجربة سلسة.</li>
-<li>واجهة حديثة ومتوافقة مع الهواتف الذكية.</li>
-<li>تسجيل دخول آمن وسريع.</li>
-<li>ملفات شخصية للمستخدمين وصناع المحتوى.</li>
-<li>نظام إعجابات ومشاهدات.</li>
-<li>أداء سريع واستهلاك منخفض للموارد.</li>
-</ul>
-
-<h2>التقنيات المستخدمة</h2>
-
-<ul>
-<li>HTML5</li>
-<li>CSS3</li>
+<li>HTML</li>
+<li>CSS</li>
 <li>JavaScript</li>
-<li>Firebase Authentication</li>
-<li>Firebase Firestore</li>
-<li>Firebase Storage</li>
-<li>Vercel Hosting</li>
+<li>Firebase</li>
 </ul>
-
-<h2>رؤية التطبيق</h2>
-
-<p>
-نسعى إلى بناء منصة عربية حديثة للفيديوهات القصيرة تركز على جودة التجربة وسهولة الاستخدام، وتمنح المبدعين فرصة للنمو والوصول إلى جمهور أوسع ضمن بيئة آمنة وسريعة التطور.
-</p>
-
-<h2>حالة المشروع</h2>
-
-<p>
-المشروع قيد التطوير، ويتم العمل حالياً على بناء النسخة الأولى وإطلاق المزايا الأساسية تمهيداً للتوسع وإضافة المزيد من الخصائص المستقبلية.
-</p>
 
 </section>
 
