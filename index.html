@@ -3,43 +3,21 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>نجم - About</title>
+<title>نجم</title>
 
 <style>
 
-/* إعادة ضبط */
 *{
 margin:0;
 padding:0;
 box-sizing:border-box;
-font-family:Tahoma,sans-serif;
 }
 
-/* خلفية الصفحة */
 body{
-background:#0f172a;
-color:#fff;
-line-height:1.9;
-}
-
-/* قسم الفيديو (إن احتجته لاحقًا) */
-.video-container{
-position:fixed;
-top:0;
-left:0;
-width:100%;
-height:100vh;
-overflow:hidden;
 background:#000;
+overflow:hidden;
 }
 
-.video-player{
-width:100%;
-height:100%;
-object-fit:cover;
-}
-
-/* feed للفيديوهات */
 .feed{
 height:100vh;
 overflow-y:scroll;
@@ -50,69 +28,22 @@ scroll-snap-type:y mandatory;
 height:100vh;
 width:100%;
 scroll-snap-align:start;
+position:relative;
 }
 
 .video-item video{
 width:100%;
 height:100%;
 object-fit:cover;
-display:block;
-background:#000;
 }
 
-/* صفحة التعريف */
-.about-app{
-max-width:900px;
-margin:auto;
-background:#1e293b;
-padding:25px;
-border-radius:20px;
-box-shadow:0 10px 30px rgba(0,0,0,.3);
-margin-top:20px;
-}
-
-h1{
-font-size:38px;
-text-align:center;
-margin-bottom:20px;
-color:#38bdf8;
-}
-
-h2{
-margin-top:25px;
-margin-bottom:10px;
-color:#60a5fa;
-border-right:4px solid #38bdf8;
-padding-right:10px;
-}
-
-p{
-color:#dbeafe;
-margin-bottom:10px;
-}
-
-ul{
-list-style:none;
-padding:0;
-}
-
-li{
-background:#334155;
-margin:8px 0;
-padding:12px;
-border-radius:12px;
-color:#f8fafc;
-}
-
-li::before{
-content:"✓ ";
-color:#22c55e;
-font-weight:bold;
-}
-
-@media(max-width:600px){
-h1{font-size:30px;}
-.about-app{padding:18px;}
+/* طبقة فوق الفيديو */
+.overlay{
+position:absolute;
+bottom:20px;
+right:15px;
+color:#fff;
+font-size:18px;
 }
 
 </style>
@@ -120,37 +51,30 @@ h1{font-size:30px;}
 
 <body>
 
-<!-- صفحة التعريف فقط -->
-<section class="about-app">
+<div class="feed">
 
-<h1>⭐ نجم</h1>
+  <section class="video-item">
+    <video autoplay muted loop playsinline>
+      <source src="video1.mp4" type="video/mp4">
+    </video>
+    <div class="overlay">⭐ نجم</div>
+  </section>
 
-<p>
-نجم هي منصة حديثة للفيديوهات القصيرة، صُممت لتقديم تجربة مشاهدة سريعة وسلسة تجمع بين البساطة والأداء العالي.
-</p>
+  <section class="video-item">
+    <video autoplay muted loop playsinline>
+      <source src="video2.mp4" type="video/mp4">
+    </video>
+    <div class="overlay">❤️ إعجاب</div>
+  </section>
 
-<h2>نبذة عن المشروع</h2>
-<p>
-يهدف تطبيق نجم إلى توفير بيئة رقمية حديثة لصناع المحتوى والمشاهدين.
-</p>
+  <section class="video-item">
+    <video autoplay muted loop playsinline>
+      <source src="video3.mp4" type="video/mp4">
+    </video>
+    <div class="overlay">👁 مشاهدة</div>
+  </section>
 
-<h2>الأهداف</h2>
-<ul>
-<li>إنشاء منصة فيديوهات قصيرة عصرية وسريعة.</li>
-<li>واجهة مشاهدة سهلة الاستخدام.</li>
-<li>تسجيل دخول برقم الهاتف.</li>
-<li>شارة زرقاء مجانية.</li>
-</ul>
-
-<h2>التقنيات</h2>
-<ul>
-<li>HTML</li>
-<li>CSS</li>
-<li>JavaScript</li>
-<li>Firebase</li>
-</ul>
-
-</section>
+</div>
 
 </body>
 </html>
