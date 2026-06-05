@@ -1,16 +1,70 @@
-video-item video{
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>نجم</title>
+
+<style>
+
+body{
+margin:0;
+background:#000;
+overflow:hidden;
+}
+
+.video-item{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100vh;
+}
+
+video{
 width:100%;
 height:100%;
 object-fit:cover;
 }
 
-/* طبقة فوق الفيديو */
-.overlay{
+/* الأزرار */
+.actions{
 position:absolute;
-bottom:20px;
 right:15px;
+bottom:120px;
+display:flex;
+flex-direction:column;
+gap:15px;
+z-index:10;
+}
+
+.action-btn{
+width:50px;
+height:50px;
+border-radius:50%;
+border:none;
+background:rgba(0,0,0,0.5);
 color:#fff;
-font-size:18px;
+font-size:20px;
+}
+
+.top-bar{
+position:fixed;
+top:10px;
+left:0;
+width:100%;
+display:flex;
+justify-content:space-between;
+padding:0 15px;
+z-index:999;
+}
+
+.btn{
+padding:10px 14px;
+border:none;
+border-radius:20px;
+background:rgba(255,255,255,0.2);
+color:#fff;
 }
 
 </style>
@@ -18,28 +72,24 @@ font-size:18px;
 
 <body>
 
-<div class="feed">
+<!-- الأزرار العلوية -->
+<div class="top-bar">
+  <button class="btn">👤 الملف الشخصي</button>
+  <button class="btn">+ رفع فيديو</button>
+</div>
 
-  <section class="video-item">
-    <video autoplay muted loop playsinline>
-      <source src="video1.mp4" type="video/mp4">
-    </video>
-    <div class="overlay">⭐ نجم</div>
-  </section>
+<!-- الفيديو -->
+<div class="video-item">
 
-  <section class="video-item">
-    <video autoplay muted loop playsinline>
-      <source src="video2.mp4" type="video/mp4">
-    </video>
-    <div class="overlay">❤️ إعجاب</div>
-  </section>
+  <video autoplay muted loop playsinline>
+    <source src="video1.mp4" type="video/mp4">
+  </video>
 
-  <section class="video-item">
-    <video autoplay muted loop playsinline>
-      <source src="video3.mp4" type="video/mp4">
-    </video>
-    <div class="overlay">👁 مشاهدة</div>
-  </section>
+  <div class="actions">
+    <button class="action-btn">❤️</button>
+    <button class="action-btn">💬</button>
+    <button class="action-btn">🔗</button>
+  </div>
 
 </div>
 
