@@ -265,20 +265,6 @@ document.addEventListener("click", e => {
     counter.textContent = likes.toLocaleString();
 
 });
-
-/* ربط الفيديوهات بالمراقب */
-document.querySelectorAll("video").forEach(video => {
-    observer.observe(video);
-});
-
-/* تشغيل أول فيديو */
-const firstVideo = document.querySelector("video");
-
-if(firstVideo){
-    firstVideo.muted = true;
-    firstVideo.play().catch(()=>{});
-}
-
  </script>
 </body>
 </html> 
