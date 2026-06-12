@@ -6,6 +6,118 @@
 <title>توفير</title>
 
 <style>
+   /* الشريط الجانبي */
+
+.sidebar{
+    position:absolute;
+    right:15px;
+    bottom:90px;
+    z-index:10;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:18px;
+}
+
+/* العنصر */
+
+.action{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:4px;
+    color:#fff;
+}
+
+/* الزر */
+
+.action-btn{
+    width:50px;
+    height:50px;
+    border-radius:50%;
+    border:none;
+    outline:none;
+
+    background:rgba(255,255,255,.08);
+    backdrop-filter:blur(18px);
+    -webkit-backdrop-filter:blur(18px);
+
+    border:1px solid rgba(255,255,255,.12);
+
+    color:#fff;
+    font-size:20px;
+    cursor:pointer;
+
+    transition:
+    transform .25s ease,
+    background .25s ease,
+    border-color .25s ease;
+}
+
+.action-btn:hover{
+    background:rgba(255,255,255,.12);
+}
+
+.action-btn:active{
+    transform:scale(.82);
+    background:rgba(255,255,255,.18);
+}
+
+/* الأرقام */
+
+.action span{
+    font-size:11px;
+    font-weight:600;
+    text-shadow:0 2px 8px rgba(0,0,0,.6);
+}
+
+/* صورة الحساب */
+
+.profile-pic{
+    width:54px;
+    height:54px;
+    border-radius:50%;
+    object-fit:cover;
+
+    border:2px solid rgba(255,255,255,.9);
+
+    box-shadow:
+    0 0 0 3px rgba(255,255,255,.08),
+    0 8px 25px rgba(0,0,0,.35);
+}
+
+/* زر الإضافة */
+
+.add-btn{
+    position:fixed;
+    bottom:20px;
+    left:50%;
+    transform:translateX(-50%);
+
+    width:56px;
+    height:56px;
+
+    border:none;
+    border-radius:16px;
+
+    background:#fff;
+    color:#000;
+
+    font-size:30px;
+    font-weight:700;
+
+    cursor:pointer;
+    z-index:1000;
+
+    box-shadow:
+    0 10px 30px rgba(0,0,0,.35);
+
+    transition:transform .25s ease;
+}
+
+.add-btn:active{
+    transform:translateX(-50%) scale(.9);
+} 
 
 *{
 margin:0;
