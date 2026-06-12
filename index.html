@@ -248,8 +248,21 @@ observer.observe(v);
 /* تشغيل أول فيديو */
 const first = document.querySelector("video");
 if(first) first.play();
+document.addEventListener("click", e => {
 
+    if(e.target.classList.contains("like-btn")){
+
+        const btn = e.target;
+        const isLiked = btn.dataset.liked === "true";
+
+        btn.dataset.liked = !isLiked;
+
+        btn.style.color = !isLiked ? "#ff4d4d" : "#fff";
+        btn.style.transform = !isLiked ? "scale(1.2)" : "scale(1)";
+    }
+
+});
 </script>
-
+  
 </body>
 </html>
