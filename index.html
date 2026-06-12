@@ -200,28 +200,26 @@ const observer = new IntersectionObserver(entries => {
 document.querySelectorAll("video").forEach(video => observer.observe(video));
 
 /* ===== 4. منطق الإعجاب (منطق واحد فقط) ===== */
-/* ===== 4. منطق الإعجاب (Like) مع فرض اللون برمجياً ===== */
+
 document.addEventListener("click", (e) => {
     const btn = e.target.closest(".like-btn");
     if (!btn) return;
 
     const counter = btn.parentElement.querySelector("span");
+
     let likes = Number(counter.dataset.likes || counter.textContent.replace(/,/g, '')) || 0;
 
     if (btn.classList.contains("is-liked")) {
         btn.classList.remove("is-liked");
-        btn.style.color = "#fff"; // إجبار اللون على الأبيض عند إلغاء الإعجاب
         likes--;
     } else {
         btn.classList.add("is-liked");
-        btn.style.color = "#ff3040"; // إجبار اللون على الأحمر عند الإعجاب
         likes++;
     }
 
     counter.dataset.likes = likes;
     counter.textContent = likes.toLocaleString();
 });
-
 
 /* ===== 5. تشغيل أول فيديو تلقائياً ===== */
 const firstVideo = document.querySelector("video");
