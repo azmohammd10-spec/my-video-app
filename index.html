@@ -248,9 +248,14 @@ observer.observe(v);
 /* تشغيل أول فيديو */
 const first = document.querySelector("video");
 if(first) first.play();
-document.addEventListener("click", e => {
 
+document.addEventListener("click", e => {
     if(e.target.classList.contains("like-btn")){
+        const btn = e.target;
+        // تبديل الكلاس (إضافة إذا لم يكن موجوداً، وحذف إذا كان موجوداً)
+        btn.classList.toggle("is-liked");
+    }
+});
 
         const btn = e.target;
         const isLiked = btn.dataset.liked === "true";
