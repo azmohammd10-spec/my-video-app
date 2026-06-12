@@ -264,50 +264,6 @@ box-shadow:0 10px 30px rgba(255,255,255,.25);
 
 <script>
 
-caption:"مرحبا;
-
-const container=document.querySelector(".video-container");
-
-videoData.forEach(v=>{
-
-const slide=document.createElement("div");
-
-slide.className="video-slide";
-
-slide.innerHTML=`
-
-<video loop muted playsinline>
-<source src="${v.video}" type="video/mp4">
-</video>
-
-<div class="info">
-<h3>@${v.user}</h3>
-<p>${v.caption}</p>
-</div>
-
-<div class="sidebar">
-
-<img src="https://i.pravatar.cc/150?u=${v.user}" class="profile-pic">
-
-<div class="action">
-<button class="action-btn like-btn">❤️</button>
-<span>${v.likes}</span>
-</div>
-
-<div class="action">
-<button class="action-btn">💬</button>
-<span>${v.comments}</span>
-</div>
-
-<div class="action">
-<button class="action-btn">↗</button>
-<span>مشاركة</span>
-</div>
-
-</div>
-
-`;
-
 container.appendChild(slide);
 
 });
