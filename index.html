@@ -6,105 +6,260 @@
 <title>توفير</title>
 
 <style>
-/* تنسيق عصري وموحد (بدون تكرار) */
-* { margin:0; padding:0; box-sizing:border-box; font-family:system-ui,sans-serif; }
-html, body { height:100%; overflow:hidden; background:#000; }
 
-.video-container { height:100vh; overflow-y:auto; scroll-snap-type:y mandatory; scrollbar-width:none; }
-.video-container::-webkit-scrollbar { display:none; }
-
-.video-slide { position:relative; height:100vh; width:100%; scroll-snap-align:start; overflow:hidden; background:#000; }
-.video-slide video { width:100%; height:100%; object-fit:cover; }
-.video-slide::after { content:""; position:absolute; left:0; right:0; bottom:0; height:40%; background:linear-gradient(to top, rgba(0,0,0,.95), transparent); pointer-events:none; }
-
-.info { position:absolute; bottom:25px; right:15px; z-index:10; color:#fff; max-width:70%; }
-.info h3 { font-size:18px; margin-bottom:8px; }
-.info p { font-size:14px; line-height:1.5; }
-
-.sidebar { position:absolute; right:15px; bottom:90px; z-index:10; display:flex; flex-direction:column; align-items:center; gap:18px; }
-.action { display:flex; flex-direction:column; align-items:center; gap:4px; color:#fff; }
-.action-btn { 
-    width:50px; height:50px; border-radius:50%; border:1px solid rgba(255,255,255,.12);
-    background:rgba(255,255,255,.08); backdrop-filter:blur(18px); color:#fff; font-size:20px; cursor:pointer;
-    transition:transform .25s ease, background .25s ease;
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:system-ui,sans-serif;
 }
-.action-btn:active { transform:scale(.82); background:rgba(255,255,255,.18); }
-.action span { font-size:11px; font-weight:600; text-shadow:0 2px 8px rgba(0,0,0,.6); }
 
-.profile-pic { width:54px; height:54px; border-radius:50%; object-fit:cover; border:2px solid rgba(255,255,255,.9); }
-
-.add-btn {
-    position:fixed; bottom:20px; left:50%; transform:translateX(-50%);
-    width:56px; height:56px; border:none; border-radius:16px;
-    background:#fff; color:#000; font-size:30px; font-weight:700;
-    cursor:pointer; z-index:1000; box-shadow:0 10px 30px rgba(0,0,0,.35);
-    transition:transform .25s ease;
+html,body{
+height:100%;
+overflow:hidden;
+background:#000;
 }
-.add-btn:active { transform:translateX(-50%) scale(.9); }
+
+.video-container{
+height:100vh;
+overflow-y:auto;
+scroll-snap-type:y mandatory;
+scrollbar-width:none;
+}
+
+.video-container::-webkit-scrollbar{
+display:none;
+}
+
+.video-slide{
+position:relative;
+height:100vh;
+width:100%;
+scroll-snap-align:start;
+overflow:hidden;
+background:#000;
+}
+
+.video-slide video{
+width:100%;
+height:100%;
+object-fit:cover;
+}
+
+.video-slide::after{
+content:"";
+position:absolute;
+left:0;
+right:0;
+bottom:0;
+height:40%;
+background:linear-gradient(
+to top,
+rgba(0,0,0,.95),
+rgba(0,0,0,.4),
+transparent
+);
+pointer-events:none;
+}
+
+.info{
+position:absolute;
+bottom:25px;
+right:15px;
+z-index:100;
+color:#fff;
+max-width:70%;
+}
+
+.info h3{
+font-size:18px;
+margin-bottom:8px;
+}
+
+.info p{
+font-size:14px;
+line-height:1.5;
+}
+
+.sidebar{
+position:absolute;
+right:15px;
+bottom:100px;
+z-index:100;
+display:flex;
+flex-direction:column;
+align-items:center;
+gap:18px;
+}
+
+.profile-pic{
+width:58px;
+height:58px;
+border-radius:50%;
+object-fit:cover;
+border:3px solid #fff;
+}
+
+.action{
+display:flex;
+flex-direction:column;
+align-items:center;
+color:#fff;
+}
+
+.action-btn{
+width:54px;
+height:54px;
+border:none;
+border-radius:50%;
+background:rgba(255,255,255,.12);
+backdrop-filter:blur(15px);
+color:#fff;
+font-size:22px;
+cursor:pointer;
+}
+
+.action-btn:active{
+transform:scale(.9);
+}
+
+.action span{
+margin-top:5px;
+font-size:12px;
+font-weight:600;
+}
+
+.add-btn{
+position:fixed;
+bottom:20px;
+left:50%;
+transform:translateX(-50%);
+width:62px;
+height:62px;
+border:none;
+border-radius:18px;
+background:linear-gradient(135deg,#00c6ff,#7d5fff);
+color:#fff;
+font-size:34px;
+font-weight:bold;
+cursor:pointer;
+z-index:9999;
+box-shadow:0 10px 30px rgba(0,0,0,.4);
+}
+
 </style>
 </head>
 <body>
 
 <div class="video-container"></div>
+
 <button class="add-btn">+</button>
 
 <script>
-// تعريف مصفوفة البيانات (هذا الجزء كان مفقوداً في كودك)
-const videoData = [
-    { user: "Mohammad", video: "video1.mp4", likes: "1.2K", comments: "320", caption: "أول فيديو داخل التطبيق 🚀" },
-    { user: "Ahmed", video: "video2.mp4", likes: "870", comments: "150", caption: "فيديو جديد 🔥" },
-    { user: "Ali", video: "video3.mp4", likes: "500", comments: "90", caption: "مرحبا بكم في توفير ❤️" }
+
+const videos = [
+
+{
+id:1,
+user:"Mohammad",
+avatar:"https://i.pravatar.cc/150?img=1",
+video:"video1.mp4",
+caption:"مرحباً بكم في توفير 🚀",
+likes:"1.2K",
+comments:"320"
+},
+
+{
+id:2,
+user:"Ahmed",
+avatar:"https://i.pravatar.cc/150?img=2",
+video:"video2.mp4",
+caption:"فيديو جديد 🔥",
+likes:"870",
+comments:"150"
+},
+
+{
+id:3,
+user:"Ali",
+avatar:"https://i.pravatar.cc/150?img=3",
+video:"video3.mp4",
+caption:"تجربة الفيديوهات القصيرة ❤️",
+likes:"500",
+comments:"90"
+}
+
 ];
 
-const container = document.querySelector(".video-container");
+const container=document.querySelector(".video-container");
 
-// بناء العناصر
-videoData.forEach(v => {
-    const slide = document.createElement("div");
-    slide.className = "video-slide";
-    slide.innerHTML = `
-        <video loop muted playsinline>
-            <source src="${v.video}" type="video/mp4">
-        </video>
-        <div class="info">
-            <h3>@${v.user}</h3>
-            <p>${v.caption}</p>
-        </div>
-        <div class="sidebar">
-            <img src="https://i.pravatar.cc/150?u=${v.user}" class="profile-pic">
-            <div class="action"><button class="action-btn like-btn">❤️</button><span>${v.likes}</span></div>
-            <div class="action"><button class="action-btn">💬</button><span>${v.comments}</span></div>
-            <div class="action"><button class="action-btn">↗</button><span>مشاركة</span></div>
-        </div>
-    `;
-    container.appendChild(slide);
+videos.forEach(v=>{
+
+container.insertAdjacentHTML("beforeend",`
+
+<div class="video-slide">
+
+<video loop muted playsinline>
+<source src="${v.video}" type="video/mp4">
+</video>
+
+<div class="info">
+<h3>@${v.user}</h3>
+<p>${v.caption}</p>
+</div>
+
+<div class="sidebar">
+
+<img src="${v.avatar}" class="profile-pic">
+
+<div class="action">
+<button class="action-btn">❤️</button>
+<span>${v.likes}</span>
+</div>
+
+<div class="action">
+<button class="action-btn">💬</button>
+<span>${v.comments}</span>
+</div>
+
+<div class="action">
+<button class="action-btn">↗</button>
+<span>مشاركة</span>
+</div>
+
+</div>
+
+</div>
+
+`);
+
 });
 
-// تفعيل المراقبة
-const observer = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-        if(entry.isIntersecting) entry.target.play();
-        else entry.target.pause();
-    });
-}, {threshold: 0.7});
+const observer=new IntersectionObserver(entries=>{
 
-document.querySelectorAll("video").forEach(v => observer.observe(v));
+entries.forEach(entry=>{
 
-// تفاعل الإعجاب
-document.addEventListener("click", e => {
-    if (e.target.classList.contains("like-btn")) {
-        const isLiked = e.target.dataset.liked;
-        if (isLiked) {
-            e.target.dataset.liked = "";
-            e.target.style.transform = "scale(1)";
-            e.target.style.color = "#fff";
-        } else {
-            e.target.dataset.liked = "1";
-            e.target.style.transform = "scale(1.2)";
-            e.target.style.color = "#ff4d4d";
-        }
-    }
+if(entry.isIntersecting){
+entry.target.play();
+}else{
+entry.target.pause();
+}
+
 });
+
+},{threshold:.7});
+
+document.querySelectorAll("video").forEach(video=>{
+observer.observe(video);
+});
+
+const firstVideo=document.querySelector("video");
+
+if(firstVideo){
+firstVideo.play();
+}
+
 </script>
+
 </body>
 </html>
