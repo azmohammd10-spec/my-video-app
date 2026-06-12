@@ -113,18 +113,24 @@ align-items:center;
 color:#fff;
 }
 
-.action-btn{
-width:52px;
-height:52px;
-border:none;
-border-radius:50%;
-background:rgba(255,255,255,.12);
-backdrop-filter:blur(15px);
-color:#fff;
-font-size:22px;
-cursor:pointer;
+.action-btn {
+    width:52px;
+    height:52px;
+    border:none;
+    border-radius:50%;
+    background:rgba(255,255,255,.12);
+    backdrop-filter:blur(15px);
+    color:#fff; /* اللون الافتراضي */
+    font-size:22px;
+    cursor:pointer;
+    transition: 0.3s; /* إضافة انتقال ناعم */
 }
 
+/* هذا الكود هو المسؤول عن التبديل */
+.like-btn.is-liked {
+    color: #ff3040 !important;
+    transform: scale(1.2);
+}
 .action-btn:active{
 transform:scale(.9);
 }
