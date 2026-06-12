@@ -7,6 +7,7 @@
 
 <style>
 
+/* الأساسيات */
 *{
 margin:0;
 padding:0;
@@ -20,6 +21,7 @@ overflow:hidden;
 background:#000;
 }
 
+/* الحاوية */
 .video-container{
 height:100vh;
 overflow-y:auto;
@@ -31,13 +33,13 @@ scrollbar-width:none;
 display:none;
 }
 
+/* كل فيديو */
 .video-slide{
 position:relative;
 height:100vh;
 width:100%;
 scroll-snap-align:start;
 overflow:hidden;
-background:#000;
 }
 
 .video-slide video{
@@ -46,6 +48,7 @@ height:100%;
 object-fit:cover;
 }
 
+/* تدرج أسفل */
 .video-slide::after{
 content:"";
 position:absolute;
@@ -53,20 +56,15 @@ left:0;
 right:0;
 bottom:0;
 height:40%;
-background:linear-gradient(
-to top,
-rgba(0,0,0,.95),
-rgba(0,0,0,.4),
-transparent
-);
-pointer-events:none;
+background:linear-gradient(to top, rgba(0,0,0,.95), transparent);
 }
 
+/* معلومات */
 .info{
 position:absolute;
 bottom:25px;
 right:15px;
-z-index:100;
+z-index:10;
 color:#fff;
 max-width:70%;
 }
@@ -78,25 +76,26 @@ margin-bottom:8px;
 
 .info p{
 font-size:14px;
-line-height:1.5;
 }
 
+/* الأزرار (LEFT SIDE) */
 .sidebar{
+position:absolute;
 left:15px;
-right:auto;
 bottom:100px;
-z-index:100;
+z-index:10;
 display:flex;
 flex-direction:column;
 align-items:center;
 gap:18px;
 }
+
 .profile-pic{
-width:58px;
-height:58px;
+width:56px;
+height:56px;
 border-radius:50%;
+border:2px solid #fff;
 object-fit:cover;
-border:3px solid #fff;
 }
 
 .action{
@@ -107,8 +106,8 @@ color:#fff;
 }
 
 .action-btn{
-width:54px;
-height:54px;
+width:52px;
+height:52px;
 border:none;
 border-radius:50%;
 background:rgba(255,255,255,.12);
@@ -123,21 +122,21 @@ transform:scale(.9);
 }
 
 .action span{
-margin-top:5px;
 font-size:12px;
-font-weight:600;
+margin-top:4px;
 }
 
+/* زر الإضافة */
 .add-btn{
 position:fixed;
 bottom:20px;
 left:50%;
 transform:translateX(-50%);
-width:62px;
-height:62px;
+width:64px;
+height:64px;
 border:none;
 border-radius:18px;
-background:linear-gradient(135deg,#00c6ff,#7d5fff);
+background:linear-gradient(135deg,#00c6ff,#7b61ff);
 color:#fff;
 font-size:34px;
 font-weight:bold;
@@ -148,6 +147,7 @@ box-shadow:0 10px 30px rgba(0,0,0,.4);
 
 </style>
 </head>
+
 <body>
 
 <div class="video-container"></div>
@@ -156,43 +156,35 @@ box-shadow:0 10px 30px rgba(0,0,0,.4);
 
 <script>
 
+/* ===== ARRAY ===== */
 const videos = [
-
 {
-id:1,
 user:"Mohammad",
-avatar:"https://i.pravatar.cc/150?img=1",
 video:"video1.mp4",
-caption:"مرحباً بكم في توفير 🚀",
+caption:"أول فيديو في تطبيق توفير 🚀",
 likes:"1.2K",
 comments:"320"
 },
-
 {
-id:2,
 user:"Ahmed",
-avatar:"https://i.pravatar.cc/150?img=2",
 video:"video2.mp4",
 caption:"فيديو جديد 🔥",
 likes:"870",
 comments:"150"
 },
-
 {
-id:3,
 user:"Ali",
-avatar:"https://i.pravatar.cc/150?img=3",
 video:"video3.mp4",
-caption:"تجربة الفيديوهات القصيرة ❤️",
+caption:"تجربة جميلة ❤️",
 likes:"500",
 comments:"90"
 }
-
 ];
 
-const container=document.querySelector(".video-container");
+/* ===== بناء الواجهة ===== */
+const container = document.querySelector(".video-container");
 
-videos.forEach(v=>{
+videos.forEach(v => {
 
 container.insertAdjacentHTML("beforeend",`
 
@@ -209,7 +201,7 @@ container.insertAdjacentHTML("beforeend",`
 
 <div class="sidebar">
 
-<img src="${v.avatar}" class="profile-pic">
+<img src="https://i.pravatar.cc/150?u=${v.user}" class="profile-pic">
 
 <div class="action">
 <button class="action-btn">❤️</button>
@@ -234,9 +226,10 @@ container.insertAdjacentHTML("beforeend",`
 
 });
 
-const observer=new IntersectionObserver(entries=>{
+/* ===== تشغيل الفيديو الظاهر فقط ===== */
+const observer = new IntersectionObserver(entries => {
 
-entries.forEach(entry=>{
+entries.forEach(entry => {
 
 if(entry.isIntersecting){
 entry.target.play();
@@ -246,17 +239,15 @@ entry.target.pause();
 
 });
 
-},{threshold:.7});
+},{threshold:0.7});
 
-document.querySelectorAll("video").forEach(video=>{
-observer.observe(video);
+document.querySelectorAll("video").forEach(v=>{
+observer.observe(v);
 });
 
-const firstVideo=document.querySelector("video");
-
-if(firstVideo){
-firstVideo.play();
-}
+/* تشغيل أول فيديو */
+const first = document.querySelector("video");
+if(first) first.play();
 
 </script>
 
