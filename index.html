@@ -166,89 +166,46 @@ box-shadow:0 10px 30px rgba(0,0,0,.4);
 
 <script>
 
-/* ===== ARRAY ===== */
+/* ===== 1. البيانات ===== */
 const videos = [
-{
-user:"Mohammad",
-video:"video1.mp4",
-caption:"أول فيديو 🚀",
-likes:1200,
-comments:320
-},
-{
-user:"Ahmed",
-video:"video2.mp4",
-caption:"فيديو جديد 🔥",
-likes:870,
-comments:150
-}
+    {user:"Mohammad", video:"video1.mp4", caption:"أول فيديو 🚀", likes:1200, comments:320},
+    {user:"Ahmed", video:"video2.mp4", caption:"فيديو جديد 🔥", likes:870, comments:150}
 ];
-/* ===== بناء الواجهة ===== */
+
+/* ===== 2. بناء الواجهة ===== */
 const container = document.querySelector(".video-container");
-
 videos.forEach(v => {
-
-container.insertAdjacentHTML("beforeend",`
-
-<div class="video-slide">
-
-<video loop muted playsinline>
-<source src="${v.video}" type="video/mp4">
-</video>
-
-<div class="info">
-<h3>@${v.user}</h3>
-<p>${v.caption}</p>
-</div>
-
-<div class="sidebar">
-
-<img src="https://i.pravatar.cc/150?u=${v.user}" class="profile-pic">
-
-<div class="action">
-<button class="action-btn like-btn">❤️</button>
-<span>${v.likes}</span>
-</div>
-
-<div class="action">
-<button class="action-btn">💬</button>
-<span>${v.comments}</span>
-</div>
-
-<div class="action">
-<button class="action-btn">↗</button>
-<span>مشاركة</span>
-</div>
-
-</div>
-
-</div>
-
-`);
-
+    container.insertAdjacentHTML("beforeend", `
+        <div class="video-slide">
+            <video loop muted playsinline><source src="${v.video}" type="video/mp4"></video>
+            <div class="info"><h3>@${v.user}</h3><p>${v.caption}</p></div>
+            <div class="sidebar">
+                <img src="https://i.pravatar.cc/150?u=${v.user}" class="profile-pic">
+                <div class="action"><button class="action-btn like-btn">❤️</button><span>${v.likes}</span></div>
+                <div class="action"><button class="action-btn">💬</button><span>${v.comments}</span></div>
+                <div class="action"><button class="action-btn">↗</button><span>مشاركة</span></div>
+            </div>
+        </div>
+    `);
 });
-/* ===== تشغيل الفيديو الظاهر فقط ===== */
+
+/* ===== 3. تشغيل الفيديوهات (مراقب واحد فقط) ===== */
 const observer = new IntersectionObserver(entries => {
     entries.forEach(entry => {
         const video = entry.target;
-        if (entry.isIntersecting) {
-            video.play().catch(()=>{});
-        } else {
-            video.pause();
-        }
+        entry.isIntersecting ? video.play().catch(()=>{}) : video.pause();
     });
 }, { threshold: 0.7 });
 
+document.querySelectorAll("video").forEach(video => observer.observe(video));
 
-/* ===== الإعجاب (Like) بطريقة صحيحة 100% ===== */
+/* ===== 4. منطق الإعجاب (منطق واحد فقط) ===== */
 document.addEventListener("click", (e) => {
     const btn = e.target.closest(".like-btn");
     if (!btn) return;
 
-    const actionBox = btn.closest(".action");
-    const counter = actionBox.querySelector("span");
-
-    let likes = Number(counter.dataset.likes || counter.textContent) || 0;
+    const counter = btn.parentElement.querySelector("span");
+    let likes = Number(counter.dataset.likes || counter.textContent.replace(/,/g, '')) || 0;
 
     if (btn.classList.contains("is-liked")) {
         btn.classList.remove("is-liked");
@@ -261,6 +218,10 @@ document.addEventListener("click", (e) => {
     counter.dataset.likes = likes;
     counter.textContent = likes.toLocaleString();
 });
+
+/* ===== 5. تشغيل أول فيديو تلقائياً ===== */
+const firstVideo = document.querySelector("video");
+if (firstVideo) firstVideo.play().catch(()=>{});
 
  </script>
 </body>
