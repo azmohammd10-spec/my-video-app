@@ -249,13 +249,8 @@ entry.target.pause();
 
 document.addEventListener("click",e=>{
 
-    if(e.target.classList.contains("like-btn")){
+    if(!e.target.classList.contains("like-btn")) return;
 
-        e.target.classList.toggle("is-liked");
-
-    }
-
-});
     const btn=e.target;
 
     const counter=
@@ -267,25 +262,18 @@ document.addEventListener("click",e=>{
     if(btn.classList.contains("is-liked")){
 
         btn.classList.remove("is-liked");
-
         likes--;
 
     }else{
 
         btn.classList.add("is-liked");
-
         likes++;
 
     }
 
     counter.dataset.likes=likes;
-
     counter.textContent=likes.toLocaleString();
 
-});
-
-document.querySelectorAll("video").forEach(v => {
-    observer.observe(v);
 });
 
 </script>
