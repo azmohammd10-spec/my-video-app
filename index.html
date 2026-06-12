@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>توفير - الفيديوهات</title>
+<title>توفير</title>
 
 <style>
 
@@ -20,8 +20,6 @@ overflow:hidden;
 background:#000;
 }
 
-/* حاوية الفيديوهات */
-
 .video-container{
 height:100vh;
 overflow-y:auto;
@@ -32,8 +30,6 @@ scrollbar-width:none;
 .video-container::-webkit-scrollbar{
 display:none;
 }
-
-/* الفيديو */
 
 .video-slide{
 position:relative;
@@ -50,8 +46,6 @@ height:100%;
 object-fit:cover;
 }
 
-/* تدرج سفلي */
-
 .video-slide::after{
 content:"";
 position:absolute;
@@ -62,13 +56,11 @@ height:40%;
 background:linear-gradient(
 to top,
 rgba(0,0,0,.95),
-rgba(0,0,0,.4),
+rgba(0,0,0,.5),
 transparent
 );
 pointer-events:none;
 }
-
-/* معلومات المستخدم */
 
 .info{
 position:absolute;
@@ -86,15 +78,13 @@ margin-bottom:8px;
 
 .info p{
 font-size:14px;
-line-height:1.6;
+line-height:1.5;
 }
-
-/* الأزرار الجانبية */
 
 .sidebar{
 position:absolute;
 left:15px;
-bottom:110px;
+bottom:100px;
 z-index:10;
 display:flex;
 flex-direction:column;
@@ -102,17 +92,13 @@ align-items:center;
 gap:18px;
 }
 
-/* صورة الحساب */
-
 .profile-pic{
-width:58px;
-height:58px;
+width:60px;
+height:60px;
 border-radius:50%;
 border:3px solid #fff;
 object-fit:cover;
 }
-
-/* عنصر */
 
 .action{
 display:flex;
@@ -120,8 +106,6 @@ flex-direction:column;
 align-items:center;
 color:#fff;
 }
-
-/* زر */
 
 .action-btn{
 width:58px;
@@ -137,7 +121,7 @@ transition:.25s;
 }
 
 .action-btn:active{
-transform:scale(.92);
+transform:scale(.9);
 }
 
 .action span{
@@ -145,60 +129,93 @@ margin-top:5px;
 font-size:13px;
 }
 
-/* زر إضافة فيديو */
-
-.add-video{
+.add-btn{
 position:fixed;
 bottom:20px;
 left:50%;
 transform:translateX(-50%);
-width:62px;
-height:62px;
+width:65px;
+height:65px;
 border:none;
 border-radius:18px;
 background:#fff;
 color:#000;
-font-size:38px;
+font-size:40px;
 font-weight:bold;
 cursor:pointer;
-z-index:100;
-box-shadow:0 8px 25px rgba(255,255,255,.25);
+z-index:1000;
+box-shadow:0 10px 30px rgba(255,255,255,.25);
 }
 
 </style>
 </head>
 <body>
 
-<div class="video-container">
+<div class="video-container"></div>
 
-<!-- فيديو 1 -->
+<button class="add-btn">+</button>
 
-<div class="video-slide">
+<script>
 
-<video autoplay muted loop playsinline>
-<source src="video1.mp4" type="video/mp4">
+const videoData = [
+
+{
+user:"Mohammad",
+video:"video1.mp4",
+likes:"1.2K",
+comments:"320",
+caption:"أول فيديو داخل التطبيق 🚀"
+},
+
+{
+user:"Ahmed",
+video:"video2.mp4",
+likes:"870",
+comments:"150",
+caption:"فيديو جديد 🔥"
+},
+
+{
+user:"Ali",
+video:"video3.mp4",
+likes:"500",
+comments:"90",
+caption:"مرحبا بكم في توفير ❤️"
+}
+
+];
+
+const container=document.querySelector(".video-container");
+
+videoData.forEach(v=>{
+
+const slide=document.createElement("div");
+
+slide.className="video-slide";
+
+slide.innerHTML=`
+
+<video loop muted playsinline>
+<source src="${v.video}" type="video/mp4">
 </video>
 
 <div class="info">
-<h3>@Mohammad</h3>
-<p>
-أول فيديو داخل التطبيق 🚀
-#توفير #فيديوهات
-</p>
+<h3>@${v.user}</h3>
+<p>${v.caption}</p>
 </div>
 
 <div class="sidebar">
 
-<img src="https://i.pravatar.cc/150?img=5" class="profile-pic">
+<img src="https://i.pravatar.cc/150?u=${v.user}" class="profile-pic">
 
 <div class="action">
-<button class="action-btn">❤️</button>
-<span>1.2K</span>
+<button class="action-btn like-btn">❤️</button>
+<span>${v.likes}</span>
 </div>
 
 <div class="action">
 <button class="action-btn">💬</button>
-<span>320</span>
+<span>${v.comments}</span>
 </div>
 
 <div class="action">
@@ -208,96 +225,61 @@ box-shadow:0 8px 25px rgba(255,255,255,.25);
 
 </div>
 
-</div>
+`;
 
-<!-- فيديو 2 -->
+container.appendChild(slide);
 
-<div class="video-slide">
+});
 
-<video autoplay muted loop playsinline>
-<source src="video2.mp4" type="video/mp4">
-</video>
+const observer=new IntersectionObserver(entries=>{
 
-<div class="info">
-<h3>@User</h3>
-<p>
-فيديو جديد داخل التطبيق 🔥
-</p>
-</div>
+entries.forEach(entry=>{
 
-<div class="sidebar">
+if(entry.isIntersecting){
 
-<img src="https://i.pravatar.cc/150?img=8" class="profile-pic">
+entry.target.play();
 
-<div class="action">
-<button class="action-btn">❤️</button>
-<span>870</span>
-</div>
+}else{
 
-<div class="action">
-<button class="action-btn">💬</button>
-<span>150</span>
-</div>
+entry.target.pause();
 
-<div class="action">
-<button class="action-btn">↗</button>
-<span>مشاركة</span>
-</div>
+}
 
-</div>
+});
 
-</div>
+},{threshold:0.7});
 
-</div>
+document.querySelectorAll("video").forEach(video=>{
+observer.observe(video);
+});
 
-<button class="add-video">+</button>
+const firstVideo=document.querySelector("video");
 
-<script>>
-    // 1. مصفوفة بيانات الفيديوهات
-    const videoData = [
-        { user: "Mohammad", video: "video1.mp4", likes: "1.2K", comments: 320 },
-        { user: "Ahmed", video: "video2.mp4", likes: 870, comments: 150 },
-        { user: "Ali", video: "video3.mp4", likes: 500, comments: 90 }
-    ];
+if(firstVideo){
+firstVideo.play();
+}
 
-    const container = document.querySelector(".video-container");
+document.addEventListener("click",e=>{
 
-    // 2. محرك البناء التلقائي
-    videoData.forEach(v => {
-        const slide = document.createElement("div");
-        slide.className = "video-slide";
+if(e.target.classList.contains("like-btn")){
 
-        slide.innerHTML = `
-            <video loop muted playsinline>
-                <source src="${v.video}" type="video/mp4">
-            </video>
+if(e.target.dataset.liked){
 
-            <div class="info">
-                <h3>@${v.user}</h3>
-            </div>
+e.target.dataset.liked="";
+e.target.style.transform="scale(1)";
 
-            <div class="sidebar">
-                <img src="https://i.pravatar.cc/150?u=${v.user}" class="profile-pic">
-                <div class="action">
-                    <button class="action-btn">❤️</button>
-                    <span>${v.likes}</span>
-                </div>
-                <div class="action">
-                    <button class="action-btn">💬</button>
-                    <span>${v.comments}</span>
-                </div>
-            </div>
-        `;
-        container.appendChild(slide);
-    });
+}else{
 
-    // 3. محرك التشغيل الذكي (Observer)
-    const observer = new IntersectionObserver(entries => {
-        entries.forEach(entry => {
-            if(entry.isIntersecting) entry.target.play();
-            else entry.target.pause();
-        });
-    }, {threshold: 0.7});
+e.target.dataset.liked="1";
+e.target.style.transform="scale(1.2)";
 
-    document.querySelectorAll("video").forEach(video => observer.observe(video));
+}
+
+}
+
+});
+
 </script>
+
+</body>
+</html>
