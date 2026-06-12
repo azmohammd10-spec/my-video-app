@@ -280,6 +280,10 @@ document.addEventListener("click",e=>{
     transform: scale(1.2);
 }
 
+document.querySelectorAll("video").forEach(v => {
+    observer.observe(v);
+});
+
 </script>
 
 </body>
