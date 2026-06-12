@@ -262,58 +262,6 @@ document.addEventListener("click", (e) => {
     counter.textContent = likes.toLocaleString();
 });
 
-
-/* ===== ربط الفيديوهات بالمراقب (مرة واحدة فقط) ===== */
-document.querySelectorAll("video").forEach(video => {
-    observer.observe(video);
-});
-
-
-/* ===== تشغيل أول فيديو ===== */
-const firstVideo = document.querySelector("video");
-
-if (firstVideo) {
-    firstVideo.muted = true;
-    firstVideo.play().catch(()=>{});
-}  
-
-/* ===== تشغيل الفيديو الظاهر فقط ===== */
-const observer = new IntersectionObserver(entries => {
-
-    entries.forEach(entry => {
-
-        if(entry.isIntersecting){
-            entry.target.play();
-        }else{
-            entry.target.pause();
-        }
-
-    });
-
-},{threshold:0.7});
-
-/* الإعجاب */
-document.addEventListener("click", e => {
-
-    if(!e.target.classList.contains("like-btn")) return;
-
-    const btn = e.target;
-    const counter = btn.parentElement.querySelector("span");
-
-    let likes = Number(counter.dataset.likes || counter.textContent);
-
-    if(btn.classList.contains("is-liked")){
-        btn.classList.remove("is-liked");
-        likes--;
-    }else{
-        btn.classList.add("is-liked");
-        likes++;
-    }
-
-    counter.dataset.likes = likes;
-    counter.textContent = likes.toLocaleString();
-
-});
  </script>
 </body>
 </html> 
