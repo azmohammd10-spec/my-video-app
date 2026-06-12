@@ -249,8 +249,13 @@ entry.target.pause();
 
 document.addEventListener("click",e=>{
 
-    if(!e.target.classList.contains("like-btn")) return;
+    if(e.target.classList.contains("like-btn")){
 
+        e.target.classList.toggle("is-liked");
+
+    }
+
+});
     const btn=e.target;
 
     const counter=
