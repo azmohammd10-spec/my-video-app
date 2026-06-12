@@ -227,6 +227,55 @@ container.insertAdjacentHTML("beforeend",`
 `);
 
 });
+/* ===== تشغيل الفيديو الظاهر فقط ===== */
+const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+        const video = entry.target;
+        if (entry.isIntersecting) {
+            video.play().catch(()=>{});
+        } else {
+            video.pause();
+        }
+    });
+}, { threshold: 0.7 });
+
+
+/* ===== الإعجاب (Like) بطريقة صحيحة 100% ===== */
+document.addEventListener("click", (e) => {
+    const btn = e.target.closest(".like-btn");
+    if (!btn) return;
+
+    const actionBox = btn.closest(".action");
+    const counter = actionBox.querySelector("span");
+
+    let likes = Number(counter.dataset.likes || counter.textContent) || 0;
+
+    if (btn.classList.contains("is-liked")) {
+        btn.classList.remove("is-liked");
+        likes--;
+    } else {
+        btn.classList.add("is-liked");
+        likes++;
+    }
+
+    counter.dataset.likes = likes;
+    counter.textContent = likes.toLocaleString();
+});
+
+
+/* ===== ربط الفيديوهات بالمراقب (مرة واحدة فقط) ===== */
+document.querySelectorAll("video").forEach(video => {
+    observer.observe(video);
+});
+
+
+/* ===== تشغيل أول فيديو ===== */
+const firstVideo = document.querySelector("video");
+
+if (firstVideo) {
+    firstVideo.muted = true;
+    firstVideo.play().catch(()=>{});
+}  
 
 /* ===== تشغيل الفيديو الظاهر فقط ===== */
 const observer = new IntersectionObserver(entries => {
