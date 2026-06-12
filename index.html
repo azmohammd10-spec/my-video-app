@@ -252,33 +252,52 @@ box-shadow:0 8px 25px rgba(255,255,255,.25);
 
 <button class="add-video">+</button>
 
-<script>
+<script>>
+    // 1. مصفوفة بيانات الفيديوهات
+    const videoData = [
+        { user: "Mohammad", video: "video1.mp4", likes: "1.2K", comments: 320 },
+        { user: "Ahmed", video: "video2.mp4", likes: 870, comments: 150 },
+        { user: "Ali", video: "video3.mp4", likes: 500, comments: 90 }
+    ];
 
-const videos=document.querySelectorAll("video");
+    const container = document.querySelector(".video-container");
 
-const observer=new IntersectionObserver(entries=>{
+    // 2. محرك البناء التلقائي
+    videoData.forEach(v => {
+        const slide = document.createElement("div");
+        slide.className = "video-slide";
 
-entries.forEach(entry=>{
+        slide.innerHTML = `
+            <video loop muted playsinline>
+                <source src="${v.video}" type="video/mp4">
+            </video>
 
-if(entry.isIntersecting){
+            <div class="info">
+                <h3>@${v.user}</h3>
+            </div>
 
-entry.target.play();
+            <div class="sidebar">
+                <img src="https://i.pravatar.cc/150?u=${v.user}" class="profile-pic">
+                <div class="action">
+                    <button class="action-btn">❤️</button>
+                    <span>${v.likes}</span>
+                </div>
+                <div class="action">
+                    <button class="action-btn">💬</button>
+                    <span>${v.comments}</span>
+                </div>
+            </div>
+        `;
+        container.appendChild(slide);
+    });
 
-}else{
+    // 3. محرك التشغيل الذكي (Observer)
+    const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+            if(entry.isIntersecting) entry.target.play();
+            else entry.target.pause();
+        });
+    }, {threshold: 0.7});
 
-entry.target.pause();
-
-}
-
-});
-
-},{threshold:0.7});
-
-videos.forEach(video=>{
-observer.observe(video);
-});
-
+    document.querySelectorAll("video").forEach(video => observer.observe(video));
 </script>
-
-</body>
-</html>
