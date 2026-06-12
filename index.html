@@ -277,6 +277,17 @@ const firstVideo=document.querySelector("video");
 if(firstVideo){
     firstVideo.play();
 }
+/* ربط الفيديوهات بالمراقب */
+document.querySelectorAll("video").forEach(v=>{
+    observer.observe(v);
+});
+
+/* تشغيل أول فيديو */
+const firstVideo=document.querySelector("video");
+
+if(firstVideo){
+    firstVideo.play();
+}  
 </script>
 
 </body>
