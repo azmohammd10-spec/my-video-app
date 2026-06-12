@@ -246,17 +246,31 @@ observer.observe(v);
 });
 
 /* تشغيل أول فيديو */
-const first = document.querySelector("video");
-if(first) first.play();
+document.addEventListener("click",e=>{
 
-document.addEventListener("click", e => {
     if(e.target.classList.contains("like-btn")){
-        const btn = e.target;
-        // تبديل الكلاس (إضافة إذا لم يكن موجوداً، وحذف إذا كان موجوداً)
-        btn.classList.toggle("is-liked");
+
+        const btn=e.target;
+
+        const counter=btn.parentElement.querySelector("span");
+
+        let likes=parseInt(counter.textContent)||0;
+
+        if(btn.classList.contains("is-liked")){
+
+            btn.classList.remove("is-liked");
+            counter.textContent=likes-1;
+
+        }else{
+
+            btn.classList.add("is-liked");
+            counter.textContent=likes+1;
+
+        }
+
     }
+
 });
-    
 </script>
 
 </body>
