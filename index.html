@@ -6,14 +6,8 @@
 <title>توفير</title>
 
 <style>
-.like-btn{
-transition:.25s;
-}
-
-.like-btn.is-liked{
-color:#ff3040;
-transform:scale(1.2);
-}
+like-btn { transition: .25s; }
+.like-btn.is-liked { color: #ff3040 !important; transform: scale(1.2); }
 /* الأساسيات */
 *{
 margin:0;
@@ -271,14 +265,6 @@ document.addEventListener("click",e=>{
     counter.textContent=likes.toLocaleString();
 
 });
-    .like-btn {
-    transition: .25s;
-}
-
-.like-btn.is-liked {
-    color: #ff3040 !important;
-    transform: scale(1.2);
-}
 
 document.querySelectorAll("video").forEach(v => {
     observer.observe(v);
