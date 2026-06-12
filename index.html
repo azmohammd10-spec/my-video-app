@@ -28,10 +28,6 @@
     transition: .25s; 
 }
 
-.like-btn.is-liked { 
-    color: #ff3040 !important; 
-    transform: scale(1.2); 
-}
 
 /* الأساسيات */
 *{
@@ -233,6 +229,7 @@ container.insertAdjacentHTML("beforeend",`
 });
 
 /* ===== تشغيل الفيديو الظاهر فقط ===== */
+/* تشغيل الفيديو الظاهر فقط */
 const observer = new IntersectionObserver(entries => {
 
 entries.forEach(entry => {
@@ -247,28 +244,22 @@ entry.target.pause();
 
 },{threshold:0.7});
 
+/* الإعجاب */
 document.addEventListener("click",e=>{
 
     if(!e.target.classList.contains("like-btn")) return;
 
     const btn=e.target;
+    const counter=btn.parentElement.querySelector("span");
 
-    const counter=
-    btn.parentElement.querySelector("span");
-
-    let likes=
-    Number(counter.dataset.likes || counter.textContent);
+    let likes=Number(counter.dataset.likes || counter.textContent);
 
     if(btn.classList.contains("is-liked")){
-
         btn.classList.remove("is-liked");
         likes--;
-
     }else{
-
         btn.classList.add("is-liked");
         likes++;
-
     }
 
     counter.dataset.likes=likes;
@@ -276,6 +267,16 @@ document.addEventListener("click",e=>{
 
 });
 
+/* ربط الفيديوهات */
+document.querySelectorAll("video").forEach(v=>{
+    observer.observe(v);
+});
+
+const firstVideo=document.querySelector("video");
+
+if(firstVideo){
+    firstVideo.play();
+}
 </script>
 
 </body>
