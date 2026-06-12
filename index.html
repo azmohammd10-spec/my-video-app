@@ -244,14 +244,14 @@ const observer = new IntersectionObserver(entries => {
 },{threshold:0.7});
 
 /* الإعجاب */
-document.addEventListener("click",e=>{
+document.addEventListener("click", e => {
 
     if(!e.target.classList.contains("like-btn")) return;
 
-    const btn=e.target;
-    const counter=btn.parentElement.querySelector("span");
+    const btn = e.target;
+    const counter = btn.parentElement.querySelector("span");
 
-    let likes=Number(counter.dataset.likes || counter.textContent);
+    let likes = Number(counter.dataset.likes || counter.textContent);
 
     if(btn.classList.contains("is-liked")){
         btn.classList.remove("is-liked");
@@ -261,21 +261,24 @@ document.addEventListener("click",e=>{
         likes++;
     }
 
-    counter.dataset.likes=likes;
-    counter.textContent=likes.toLocaleString();
+    counter.dataset.likes = likes;
+    counter.textContent = likes.toLocaleString();
 
 });
 
 /* ربط الفيديوهات بالمراقب */
-document.querySelectorAll("video").forEach(video=>{
+document.querySelectorAll("video").forEach(video => {
     observer.observe(video);
 });
 
+/* تشغيل أول فيديو */
 const firstVideo = document.querySelector("video");
 
 if(firstVideo){
-    firstVideo.play();
+    firstVideo.muted = true;
+    firstVideo.play().catch(()=>{});
 }
+
  </script>
 </body>
 </html> 
