@@ -229,18 +229,17 @@ container.insertAdjacentHTML("beforeend",`
 });
 
 /* ===== تشغيل الفيديو الظاهر فقط ===== */
-/* تشغيل الفيديو الظاهر فقط */
 const observer = new IntersectionObserver(entries => {
 
-entries.forEach(entry => {
+    entries.forEach(entry => {
 
-if(entry.isIntersecting){
-entry.target.play();
-}else{
-entry.target.pause();
-}
+        if(entry.isIntersecting){
+            entry.target.play();
+        }else{
+            entry.target.pause();
+        }
 
-});
+    });
 
 },{threshold:0.7});
 
@@ -267,19 +266,9 @@ document.addEventListener("click",e=>{
 
 });
 
-/* ربط الفيديوهات */
-document.querySelectorAll("video").forEach(v=>{
-    observer.observe(v);
-});
-
-const firstVideo=document.querySelector("video");
-
-if(firstVideo){
-    firstVideo.play();
-}
 /* ربط الفيديوهات بالمراقب */
-document.querySelectorAll("video").forEach(v=>{
-    observer.observe(v);
+document.querySelectorAll("video").forEach(video=>{
+    observer.observe(video);
 });
 
 /* تشغيل أول فيديو */
@@ -287,8 +276,7 @@ const firstVideo=document.querySelector("video");
 
 if(firstVideo){
     firstVideo.play();
-}  
-</script>
-
+}
+ </script>
 </body>
-</html>
+</html> 
