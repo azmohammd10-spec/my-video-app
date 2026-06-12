@@ -259,7 +259,9 @@ document.addEventListener("click", e => {
 
         btn.style.setProperty("color", !isLiked ? "#ff4d4d" : "#fff", "important");
 
-        btn.style.transform = !isLiked ? "scale(1.2)" : "scale(1)";
+        btn.style.setProperty("color", !isLiked ? "#ff4d4d" : "#fff", "important");
+btn.style.transform = !isLiked ? "scale(1.2)" : "scale(1)";
+
     }
 
 });
