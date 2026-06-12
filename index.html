@@ -233,34 +233,35 @@ entry.target.pause();
 
 },{threshold:0.7});
 
-document.querySelectorAll("video").forEach(v=>{
-observer.observe(v);
-});
-
-/* تشغيل أول فيديو */
 document.addEventListener("click",e=>{
 
-    if(e.target.classList.contains("like-btn")){
+    if(!e.target.classList.contains("like-btn")) return;
 
-        const btn=e.target;
+    const btn=e.target;
 
-        const counter=btn.parentElement.querySelector("span");
+    const counter=
+    btn.parentElement.querySelector("span");
 
-        let likes=parseInt(counter.textContent)||0;
+    let likes=
+    Number(counter.dataset.likes || counter.textContent);
 
-        if(btn.classList.contains("is-liked")){
+    if(btn.classList.contains("is-liked")){
 
-            btn.classList.remove("is-liked");
-            counter.textContent=likes-1;
+        btn.classList.remove("is-liked");
 
-        }else{
+        likes--;
 
-            btn.classList.add("is-liked");
-            counter.textContent=likes+1;
+    }else{
 
-        }
+        btn.classList.add("is-liked");
+
+        likes++;
 
     }
+
+    counter.dataset.likes=likes;
+
+    counter.textContent=likes.toLocaleString();
 
 });
 </script>
