@@ -6,6 +6,38 @@
 <title>توفير</title>
 
 <style>
+  .top-bar{
+    position:fixed;
+    top:10px;
+    left:10px;
+    right:10px;
+    z-index:9999;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    color:#fff;
+}
+
+.user-box{
+    display:flex;
+    align-items:center;
+    gap:10px;
+}
+
+.user-box img{
+    width:35px;
+    height:35px;
+    border-radius:50%;
+}
+
+#editUser{
+    border:none;
+    padding:8px 12px;
+    border-radius:10px;
+    background:#00c6ff;
+    color:#000;
+    cursor:pointer;
+}
 
   .action-btn{
     width:52px;
@@ -254,7 +286,14 @@ margin-top:4px;
 </head>
 
 <body>
+<div class="top-bar">
+    <div class="user-box">
+        <img id="userAvatar" src="https://i.pravatar.cc/100" />
+        <span id="userName">زائر</span>
+    </div>
 
+    <button id="editUser">تغيير الحساب</button>
+</div>
 <div class="video-container"></div>
 
 <button class="add-btn">+</button>
