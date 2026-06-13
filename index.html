@@ -314,7 +314,9 @@ console.log("JavaScript Working");
 
 document.addEventListener("click",(e)=>{
 
-    if(e.target.classList.contains("comment-btn")){
+    const btn = e.target.closest(".comment-btn");
+
+    if(btn){
         commentsModal.classList.add("active");
     }
 
