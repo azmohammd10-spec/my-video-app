@@ -202,6 +202,15 @@ if (container) {
         `);
     });
 }
+/* ===== الإعجاب ===== */
+document.addEventListener("click", (e) => {
+
+    const btn = e.target.closest(".like-btn");
+    if (!btn) return;
+
+    btn.classList.toggle("is-liked");
+
+});  
 </script>
 
 </body>
