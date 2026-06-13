@@ -137,18 +137,17 @@ margin-top:4px;
 }
 
 /* زر الإضافة */
-/* زر + عصري */
 .add-btn{
     position:fixed;
-    bottom:18px;
+    bottom:16px;
     left:50%;
     transform:translateX(-50%);
 
-    width:52px;
-    height:52px;
+    width:42px;
+    height:42px;
 
     border:none;
-    border-radius:14px;
+    border-radius:12px;
 
     background:linear-gradient(
         90deg,
@@ -159,18 +158,23 @@ margin-top:4px;
     );
 
     color:#000;
-    font-size:30px;
+    font-size:24px;
     font-weight:900;
+    line-height:42px;
 
     cursor:pointer;
     z-index:9999;
 
     box-shadow:
-        0 8px 25px rgba(0,0,0,.35),
-        0 0 15px rgba(0,240,255,.25),
-        0 0 15px rgba(255,45,122,.25);
+        0 5px 15px rgba(0,0,0,.3),
+        0 0 10px rgba(0,240,255,.25),
+        0 0 10px rgba(255,45,122,.25);
 
     transition:.25s ease;
+}
+
+.add-btn:active{
+    transform:translateX(-50%) scale(.9);
 }
 
 .add-btn:hover{
