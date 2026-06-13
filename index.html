@@ -297,21 +297,25 @@ if (container) {
         `);
     });
 }
-/* ===== الإعجاب ===== */
   /* ===== الإعجاب ===== */
-document.addEventListener("click", function(e){
+document.addEventListener("click", (e) => {
 
     const likeBtn = e.target.closest(".like-btn");
-
     if(likeBtn){
         likeBtn.classList.toggle("is-liked");
         return;
     }
 
     const commentBtn = e.target.closest(".comment-btn");
-
     if(commentBtn){
         document.querySelector(".comments-modal").classList.add("active");
+        return;
+    }
+
+    const closeBtn = e.target.closest("#closeComments");
+    if(closeBtn){
+        document.querySelector(".comments-modal").classList.remove("active");
+        return;
     }
 
 });
