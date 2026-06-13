@@ -380,7 +380,7 @@ document.getElementById("sendComment").onclick = () => {
         <p>${input.value}</p>
     `;
 
-    /* ===== المستخدم ===== */
+/* ===== المستخدم ===== */
 let currentUser = localStorage.getItem("username") || "زائر";
 
 document.getElementById("userName").textContent = currentUser;
@@ -402,7 +402,7 @@ document.getElementById("editUser").onclick = () => {
 };
 
 
-/* ===== التفاعل العام (لايك + تعليق + إغلاق) ===== */
+/* ===== التفاعل العام ===== */
 document.addEventListener("click", (e) => {
 
     const likeBtn = e.target.closest(".like-btn");
@@ -422,7 +422,6 @@ document.addEventListener("click", (e) => {
         document.querySelector(".comments-modal").classList.remove("active");
         return;
     }
-
 });
 
 
