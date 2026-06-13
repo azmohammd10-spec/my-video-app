@@ -384,6 +384,25 @@ document.getElementById("sendComment").onclick = () => {
 
     input.value = "";
 };
+  let currentUser = localStorage.getItem("username") || "زائر";
+
+document.getElementById("userName").textContent = currentUser;
+
+/* تغيير الحساب */
+document.getElementById("editUser").onclick = () => {
+    const name = prompt("اكتب اسمك:");
+
+    if(!name || name.trim() === "") return;
+
+    currentUser = name;
+
+    localStorage.setItem("username", currentUser);
+
+    document.getElementById("userName").textContent = currentUser;
+
+    document.getElementById("userAvatar").src =
+        "https://i.pravatar.cc/100?u=" + currentUser;
+};
   </script>
   <div class="comments-modal">
 
