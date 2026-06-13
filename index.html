@@ -186,7 +186,7 @@ if (container) {
                 <div class="sidebar">
                     <img src="https://i.pravatar.cc/150?u=${v.user}" class="profile-pic">
                     <div class="action">
-                        <button class="action-btn like-btn">❤️</button>
+                        <button type="button" class="action-btn like-btn">❤</button>
                         <span>${v.likes}</span>
                     </div>
                     <div class="action">
@@ -203,14 +203,17 @@ if (container) {
     });
 }
 /* ===== الإعجاب ===== */
-document.addEventListener("click", (e) => {
+  document.addEventListener("click", function(e){
 
     const btn = e.target.closest(".like-btn");
-    if (!btn) return;
+
+    if(!btn) return;
 
     btn.classList.toggle("is-liked");
 
-});  
+    console.log("Like Clicked");
+
+});
 </script>
 
 </body>
