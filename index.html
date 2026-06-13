@@ -380,11 +380,7 @@ document.getElementById("sendComment").onclick = () => {
         <p>${input.value}</p>
     `;
 
-    document.getElementById("commentsList").appendChild(div);
-
-    input.value = "";
-};
-  /* ===== المستخدم ===== */
+    /* ===== المستخدم ===== */
 let currentUser = localStorage.getItem("username") || "زائر";
 
 document.getElementById("userName").textContent = currentUser;
@@ -393,7 +389,7 @@ document.getElementById("userName").textContent = currentUser;
 document.getElementById("editUser").onclick = () => {
     const name = prompt("اكتب اسمك:");
 
-    if(!name || name.trim() === "") return;
+    if (!name || name.trim() === "") return;
 
     currentUser = name;
 
@@ -406,27 +402,29 @@ document.getElementById("editUser").onclick = () => {
 };
 
 
-/* ===== التفاعل (لايك + كومنت) ===== */
+/* ===== التفاعل العام (لايك + تعليق + إغلاق) ===== */
 document.addEventListener("click", (e) => {
 
+    // لايك
     const likeBtn = e.target.closest(".like-btn");
-    if(likeBtn){
+    if (likeBtn) {
         likeBtn.classList.toggle("is-liked");
         return;
     }
 
+    // فتح التعليقات
     const commentBtn = e.target.closest(".comment-btn");
-    if(commentBtn){
+    if (commentBtn) {
         document.querySelector(".comments-modal").classList.add("active");
         return;
     }
 
+    // إغلاق التعليقات (زر X)
     const closeBtn = e.target.closest("#closeComments");
-    if(closeBtn){
+    if (closeBtn) {
         document.querySelector(".comments-modal").classList.remove("active");
         return;
     }
-
 });
 
 
@@ -435,7 +433,7 @@ document.getElementById("sendComment").onclick = () => {
 
     const input = document.getElementById("commentInput");
 
-    if(input.value.trim() === "") return;
+    if (input.value.trim() === "") return;
 
     const div = document.createElement("div");
 
