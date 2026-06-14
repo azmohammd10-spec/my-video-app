@@ -359,7 +359,7 @@ document.getElementById("editUser").onclick = () => {
 };
 
 /* ===== التفاعل العام ===== */
-document.getElementById("sendComment").addEventListener("click", () => {
+document.addEventListener("click", (e) => {
 
     const likeBtn = e.target.closest(".like-btn");
     if (likeBtn) {
@@ -379,8 +379,6 @@ document.getElementById("sendComment").addEventListener("click", () => {
         return;
     }
 });
-document.getElementById("sendComment").addEventListener("click", () => {
-
 </script>  
 </body>
 </html>
