@@ -406,6 +406,26 @@ document.getElementById("sendComment").onclick = () => {
     input.value = "";
     input.focus();
 };
-</script>  
+</script> 
+ <!-- نافذة التعليقات -->
+<div class="comments-modal">
+
+    <div class="comments-box">
+
+        <div class="comments-header">
+            <h3>التعليقات</h3>
+            <button id="closeComments">✕</button>
+        </div>
+
+        <div class="comments-list" id="commentsList"></div>
+
+        <div class="comment-input">
+            <input id="commentInput" type="text" placeholder="اكتب تعليقاً...">
+            <button id="sendComment">إرسال</button>
+        </div>
+
+    </div>
+
+</div> 
 </body>
 </html>
