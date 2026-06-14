@@ -359,7 +359,7 @@ document.getElementById("editUser").onclick = () => {
 };
 
 /* ===== التفاعل العام ===== */
-document.addEventListener("click", (e) => {
+document.getElementById("sendComment").addEventListener("click", () => {
 
     const likeBtn = e.target.closest(".like-btn");
     if (likeBtn) {
@@ -379,30 +379,8 @@ document.addEventListener("click", (e) => {
         return;
     }
 });
+document.getElementById("sendComment").addEventListener("click", () => {
 
-
-/* ===== إرسال تعليق ===== */
-window.addEventListener("DOMContentLoaded", () => {
-
-    document.getElementById("sendComment").addEventListener("click", () => {
-
-        const input = document.getElementById("commentInput");
-        const text = input.value.trim();
-
-        if (!text) return;
-
-        const comment = document.createElement("div");
-        comment.className = "comment";
-
-        comment.innerHTML = `<b>${currentUser}</b><p>${text}</p>`;
-
-        document.getElementById("commentsList").appendChild(comment);
-
-        input.value = "";
-        input.focus();
-    });
-
-});
 </script>  
 </body>
 </html>
