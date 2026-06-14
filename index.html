@@ -337,7 +337,6 @@ if (container) {
     });
 }
 
-
 /* ===== المستخدم ===== */
 let currentUser = localStorage.getItem("username") || "زائر";
 
@@ -349,7 +348,7 @@ document.getElementById("editUser").onclick = () => {
 
     if (!name || name.trim() === "") return;
 
-    currentUser = name;
+    currentUser = name.trim();
 
     localStorage.setItem("username", currentUser);
 
@@ -361,6 +360,7 @@ document.getElementById("editUser").onclick = () => {
 
 
 /* ===== التفاعل العام ===== */
+document.addEventListener("click", (e) => {
 
     const likeBtn = e.target.closest(".like-btn");
     if (likeBtn) {
@@ -381,75 +381,30 @@ document.getElementById("editUser").onclick = () => {
     }
 });
 
+
 /* ===== إرسال تعليق ===== */
-document.getElementById("sendComment").onclick = () => {
-
-    const input = document.getElementById("commentInput");
-    const text = input.value.trim();
-
-    if (!text) return;
-
-    const comment = document.createElement("div");
-
-    comment.className = "comment";
-
-    comment.innerHTML = `
-        <b>${currentUser}</b>
-        <p>${text}</p>
-    `;
-
-    document
-        .getElementById("commentsList")
-        .appendChild(comment);
-
-    input.value = "";
-    input.focus();
-};
-</script> 
- <!-- نافذة التعليقات -->
-<div class="comments-modal">
-
-    <div class="comments-box">
-
-        <div class="comments-header">
-            <h3>التعليقات</h3>
-            <button id="closeComments">✕</button>
-        </div>
-
-        <div class="comments-list" id="commentsList"></div>
-
-        <div class="comment-input">
-            <input id="commentInput" type="text" placeholder="اكتب تعليقاً...">
-            <button id="sendComment">إرسال</button>
-        </div>
-
-    </div>
-
-</div> 
-<script>
-
 window.addEventListener("DOMContentLoaded", () => {
 
-  document.getElementById("sendComment").onclick = () => {
+    document.getElementById("sendComment").addEventListener("click", () => {
 
-      const input = document.getElementById("commentInput");
-      const text = input.value.trim();
+        const input = document.getElementById("commentInput");
+        const text = input.value.trim();
 
-      if (!text) return;
+        if (!text) return;
 
-      const comment = document.createElement("div");
-      comment.className = "comment";
+        const comment = document.createElement("div");
+        comment.className = "comment";
 
-      comment.innerHTML = `<b>${currentUser}</b><p>${text}</p>`;
+        comment.innerHTML = `<b>${currentUser}</b><p>${text}</p>`;
 
-      document.getElementById("commentsList").appendChild(comment);
+        document.getElementById("commentsList").appendChild(comment);
 
-      input.value = "";
-      input.focus();
-  };
+        input.value = "";
+        input.focus();
+    });
 
 });
-
+            
 </script>  
 </body>
 </html>
